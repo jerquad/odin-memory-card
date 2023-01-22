@@ -5,51 +5,42 @@ function App() {
 
   const [images, setImages] = useState(() => importAll(require.context('./components/img', false, /\.(png)$/)));
   const [level, setLevel] = useState(3);
+  const [levelPic, setLevelPic] = useState(() => images.slice(0, level));
+  const [levelMark, setLevelMark] = useState(() => new Array(level).fill(false));
+
   const [score, setScore] = useState(0);
   const [hiScore, setHiScore] = useState(0);
 
-  const [levelPic, setLevelPic] = useState(() => images.slice(0, level));
-  const [levelMark, setLevelMark] = useState(() => new Array(level).fill(false))
-
+  // import all images at once
   function importAll(r) {
     let images = [];
-    r.keys().forEach((item, index) => {
-      images.push(r(item))
-    })
+    r.keys().forEach((item) => { images.push(r(item)) });
     return images;
   }
 
+  // return a randomized array, optional second parameter randomizes second array in lockstep
   function randomizeArray(original, lock) {
-    const newImages = [];
+    const newArray = [];
     const newLock = [];
     const size = original.length;
     for (let i = 0; i < size; i++) {
       let random = Math.floor(Math.random() * size)
-      while (newImages[random]) {
+      while (newArray[random]) {
         random += 1;
         if (random === size) random = 0;
       }
-      newImages[random] = original[i];
+      newArray[random] = original[i];
       if (lock) newLock[random] = lock[i];
     }
-    if (lock) return [newImages, newLock]
-    return newImages;
+    if (lock) return [newArray, newLock]
+    return newArray;
   }
 
+  // randomizes and sets a current levels pictures and markings in sync with eachother
   function randomizeLevel() {
     const [lvl, mrk] = randomizeArray(levelPic, levelMark);
     setLevelPic(lvl);
     setLevelMark(mrk);
-  }
-
-  function imgArea() {
-    const subImages = [];
-    for (let i = 0; i < level; i++) {
-      subImages.push((
-        <img key={i.toString()} src={images[i]} alt={`dummy-${i}`} />
-      ))
-    }
-    return subImages;
   }
 
   function levelUp() {
@@ -65,7 +56,6 @@ function App() {
     setLevel(3);
     setScore(0);
   }
-
 
   return (
     <div className="App">

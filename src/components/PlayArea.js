@@ -3,11 +3,13 @@ import React, { useState, useEffect } from 'react';
 function PlayArea(props) {
     const [roundScore, setRoundScore] = useState(0);
 
-    function pickPic(e, index) {
+    function handleClick(index) {
         if (props.mark[index]) { console.log('bzzt') }
-        const mark = [...props.mark];
-        mark[index] = true;
-        props.setMark(mark);
+        else {
+            const mark = [...props.mark];
+            mark[index] = true;
+            props.setMark(mark);
+        }
     }
 
     return (
@@ -24,7 +26,7 @@ function PlayArea(props) {
                         src={img}
                         alt={`dummy-${i}`}
                         onClick={(e) => {
-                            pickPic(e, i)
+                            handleClick(i)
                         }}
                     />)}
             </div>
