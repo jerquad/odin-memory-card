@@ -4,8 +4,8 @@ import PlayArea from './components/PlayArea';
 function App() {
 
   const [images, setImages] = useState(() => importAll(require.context('./components/img', false, /\.(png)$/)));
-  const [level, setLevel] = useState(3);
-  const [levelPic, setLevelPic] = useState(() => images.slice(0, level));
+  const [level, setLevel] = useState(1);
+  const [levelPic, setLevelPic] = useState(() => images.slice(0, level + 2));
   const [levelMark, setLevelMark] = useState(() => new Array(level).fill(false));
 
   const [score, setScore] = useState(0);
@@ -44,23 +44,16 @@ function App() {
   }
 
   useEffect(() => {
-    setLevelPic(images.slice(0, level));
+    if (level === 1) setScore(0);
+    setLevelPic(randomizeArray(images.slice(0, level + 2)));
     setLevelMark(new Array(level + 1).fill(false));
   }, [level])
 
-  function levelUp() {
-    setLevel(level + 1);
-  }
-
   function scoreUp() {
     setScore(score + 1);
-    if (score > hiScore) { setHiScore(score) };
   }
 
-  function gameover() {
-    setLevel(3);
-    setScore(0);
-  }
+  useEffect(() => { if (score > hiScore) setHiScore(score); })
 
   return (
     <div className="App">
@@ -86,7 +79,7 @@ function App() {
         setMark={setLevelMark}
         random={randomizeLevel} 
         scoreUp={scoreUp}
-        gameover={gameover}/>
+        />
       </div>
     </div>
   );

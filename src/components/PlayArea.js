@@ -3,14 +3,20 @@ import React, { useState, useEffect } from 'react';
 function PlayArea(props) {
     const [roundScore, setRoundScore] = useState(0);
     function handleClick(index) {
-        if (props.mark[index]) { console.log('bzzt') }
-        else if (roundScore === props.level - 1) { 
+        if (props.mark[index]) { 
+            console.log('bzzt');
+             props.levelUp(1);
+             setRoundScore(0);
+        }
+        else if (roundScore === props.level + 1) { 
             console.log('level up');
+            props.scoreUp();
             props.levelUp(props.level + 1);
             setRoundScore(0);
         }
         else {
             setRoundScore(roundScore + 1);
+            props.scoreUp();
             const mark = [...props.mark];
             mark[index] = true;
             props.setMark(mark);
