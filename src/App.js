@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import WebFont from 'webfontloader';
 import PlayArea from './components/PlayArea';
 import './components/style/app.css'
 
@@ -10,6 +9,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [hiScore, setHiScore] = useState(0);
 
+  // check for hi schores
   useEffect(() => { if (score > hiScore) setHiScore(score); })
 
   // import all images at once
@@ -59,7 +59,6 @@ function App() {
           scoreNull={() => setScore(0)}
           />
         </div>
-        
         <div id='how-to'>
           <div className='how-to-content'>
             <h3>How To Play...</h3>
