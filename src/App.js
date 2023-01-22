@@ -5,11 +5,10 @@ function App() {
 
   const [images, setImages] = useState(() => importAll(require.context('./components/img', false, /\.(png)$/)));
   const [level, setLevel] = useState(1);
-  const [levelPic, setLevelPic] = useState(() => images.slice(0, level + 2));
-  const [levelMark, setLevelMark] = useState(() => new Array(level).fill(false));
-
   const [score, setScore] = useState(0);
   const [hiScore, setHiScore] = useState(0);
+
+  useEffect(() => { if (score > hiScore) setHiScore(score); })
 
   // import all images at once
   function importAll(r) {
@@ -36,25 +35,6 @@ function App() {
     return newArray;
   }
 
-  // randomizes and sets a current levels pictures and markings in sync with eachother
-  function randomizeLevel() {
-    const [lvl, mrk] = randomizeArray(levelPic, levelMark);
-    setLevelPic(lvl);
-    setLevelMark(mrk);
-  }
-
-  useEffect(() => {
-    if (level === 1) setScore(0);
-    setLevelPic(randomizeArray(images.slice(0, level + 2)));
-    setLevelMark(new Array(level + 1).fill(false));
-  }, [level])
-
-  function scoreUp() {
-    setScore(score + 1);
-  }
-
-  useEffect(() => { if (score > hiScore) setHiScore(score); })
-
   return (
     <div className="App">
       <div style={{ display: 'block'}}>
@@ -72,13 +52,12 @@ function App() {
       </div>
       <div>
         <PlayArea 
-        images={levelPic} 
+        images={images.slice(0, level + 2)} 
         level={level}
         levelUp={setLevel}
-        mark={levelMark}
-        setMark={setLevelMark}
-        random={randomizeLevel} 
-        scoreUp={scoreUp}
+        random={randomizeArray} 
+        scoreUp={() => setScore(score + 1)}
+        scoreNull={() => setScore(0)}
         />
       </div>
     </div>
