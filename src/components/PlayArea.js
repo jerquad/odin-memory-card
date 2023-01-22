@@ -2,15 +2,24 @@ import React, { useState, useEffect } from 'react';
 
 function PlayArea(props) {
     const [roundScore, setRoundScore] = useState(0);
-
     function handleClick(index) {
         if (props.mark[index]) { console.log('bzzt') }
+        else if (roundScore === props.level - 1) { 
+            console.log('level up');
+            props.levelUp(props.level + 1);
+            setRoundScore(0);
+        }
         else {
+            setRoundScore(roundScore + 1);
             const mark = [...props.mark];
             mark[index] = true;
             props.setMark(mark);
         }
     }
+
+    useEffect(() => {
+        props.random();
+    }, [roundScore])
 
     return (
         <div style={{border: '1px solid black'}}>

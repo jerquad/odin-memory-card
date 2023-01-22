@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PlayArea from './components/PlayArea';
 
 function App() {
@@ -43,6 +43,11 @@ function App() {
     setLevelMark(mrk);
   }
 
+  useEffect(() => {
+    setLevelPic(images.slice(0, level));
+    setLevelMark(new Array(level + 1).fill(false));
+  }, [level])
+
   function levelUp() {
     setLevel(level + 1);
   }
@@ -76,7 +81,7 @@ function App() {
         <PlayArea 
         images={levelPic} 
         level={level}
-        levelUp={levelUp}
+        levelUp={setLevel}
         mark={levelMark}
         setMark={setLevelMark}
         random={randomizeLevel} 
