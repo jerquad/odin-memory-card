@@ -48,7 +48,7 @@ function PlayArea(props) {
 
     return (
         <div style={{border: '1px solid black'}}>
-            <div style={{syle: 'block'}}>
+            <div>
                 {images.map((img, i) => 
                     <img
                         key={i.toString()}
