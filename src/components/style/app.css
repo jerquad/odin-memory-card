@@ -54,11 +54,6 @@ body{
 #play-area {
     min-width: 450px;
     max-width: 875px;
-    /* width: 90%; */
-
-    /* display: flex;
-    flex-direction: column;
-    flex-basis: 0; */
 }
 
 #scorebox {
