@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Tangerine&display=swap');
+@font-face {
+    font-family: "Tangerine";
+    src: url('../font/Tangerine-Regular.ttf');
+}
 
 body{
     font-family:'Tangerine', Arial, cursive;

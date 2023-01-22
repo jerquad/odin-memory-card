@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import WebFont from 'webfontloader';
 import PlayArea from './components/PlayArea';
 import './components/style/app.css'
 
