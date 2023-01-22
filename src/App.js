@@ -38,17 +38,10 @@ function App() {
   return (
     <div className="App">
       <div style={{ display: 'block'}}>
-        {`SCORE: ${score} LEVEL: ${level} HISCORE: ${hiScore}`}
+        <h1>That's So Decreux...</h1>
       </div>
       <div style={{ display: 'block' }}>
-        <button onClick={() => setImages(randomizeArray(images))} >RANDOMIZE</button>
-        <button onClick={() => setLevel(level + 1)}>GROW</button>
-        <button onClick={() => setLevel(1)}>RESET</button>
-      </div>
-      <div style={{display: 'block'}}>
-        <img src={images[0]} alt='TOPLEVEL IMG' />
-        <img src={images[1]} alt='TOPLEVEL IMG' />
-        <img src={images[2]} alt='TOPLEVEL IMG' />
+        {`SCORE: ${score} LEVEL: ${level} HISCORE: ${hiScore}`}
       </div>
       <div>
         <PlayArea 

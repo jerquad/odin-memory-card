@@ -48,11 +48,6 @@ function PlayArea(props) {
 
     return (
         <div style={{border: '1px solid black'}}>
-            <div style={{display: 'block'}}>
-                {`roundScore: ${roundScore}`}
-            </div>
-            <button onClick={() => console.log(marked)}>debug</button>
-            <button onClick={() => props.random()}>random</button>
             <div style={{syle: 'block'}}>
                 {images.map((img, i) => 
                     <img
