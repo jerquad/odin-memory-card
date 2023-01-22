@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './style/PlayArea.css';
 
 function PlayArea(props) {
     const [roundScore, setRoundScore] = useState(1);
@@ -47,18 +48,16 @@ function PlayArea(props) {
     }
 
     return (
-        <div style={{border: '1px solid black'}}>
-            <div>
-                {images.map((img, i) => 
-                    <img
-                        key={i.toString()}
-                        src={img}
-                        alt={`dummy-${i}`}
-                        onClick={(e) => {
-                            handleClick(i)
-                        }}
-                    />)}
-            </div>
+        <div id='play-images'>
+            {images.map((img, i) => 
+                <img
+                    key={i.toString()}
+                    src={img}
+                    alt={`dummy-${i}`}
+                    onClick={(e) => {
+                        handleClick(i)
+                    }}
+                />)}
         </div>
     );
 }

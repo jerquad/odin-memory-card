@@ -38,38 +38,41 @@ function App() {
 
   return (
     <div className="App">
-      <div id='header'>
-        <h1>That's So Decreux...</h1>
-        <h2>...A Memory Game</h2>
-      </div>
-      <div id='scorebox'>
-        <span>{`Score... ${score}`}</span>
-        <span>{`Level... ${level}`}</span>
-        <span>{`Hi Score... ${hiScore}`}</span>
-      </div>
-      <div>
-        <PlayArea 
-        images={images.slice(0, level + 2)} 
-        level={level}
-        levelUp={setLevel}
-        random={randomizeArray} 
-        scoreUp={() => setScore(score + 1)}
-        scoreNull={() => setScore(0)}
-        />
-      </div>
-      <div id='how-to'>
-        <div className='how-to-content'>
-          <h3>How To Play...</h3>
-          <ul>
-            <li>...Select each portrait only once per level</li>
-            <li>...Each correct selection awards one point</li>
-            <li>...Select portrait two times in a level results in a game over</li>
-            <li>...A new portrait will be added with each level</li>
-          </ul>
+      <div className='top'>
+        <div id='header'>
+          <h1>That's So Decreux...</h1>
+          <h2>...A Memory Game</h2>
+        </div>
+        <div id='play-area'>
+          <div id='scorebox'>
+            <span>{`Score... ${score}`}</span>
+            <span>{`Level... ${level}`}</span>
+            <span>{`Hi Score... ${hiScore}`}</span>
+          </div>
+          <PlayArea
+          images={images.slice(0, level + 2)}
+          level={level}
+          levelUp={setLevel}
+          random={randomizeArray}
+          scoreUp={() => setScore(score + 1)}
+          scoreNull={() => setScore(0)}
+          />
+        </div>
+        
+        <div id='how-to'>
+          <div className='how-to-content'>
+            <h3>How To Play...</h3>
+            <ul>
+              <li>...Select each portrait only once per level</li>
+              <li>...Each correct selection awards one point</li>
+              <li>...Select portrait two times in a level results in a game over</li>
+              <li>...A new portrait will be added with each level</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div id='footer'>
-        &copy;2023 Jimmy Quadros as part of The Odin Project
+            &copy;2023 Jimmy Quadros as part of The Odin Project
       </div>
     </div>
   );
