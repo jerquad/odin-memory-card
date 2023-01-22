@@ -1,3 +1,21 @@
+.stat-box {
+    border: 1px solid rgb(236, 205, 145);
+    border-radius: .25rem;
+    height: 1rem;
+    width: 1rem;
+}
+
+.stat-check {
+    background-color: rgb(236, 205, 145);;
+}
+
+#round-status {
+    margin: 3px auto 3px auto;
+    display: flex;
+    gap: 2px;
+    width: min-content;
+}
+
 #play-images {
     background-color:wheat;
     padding: 1rem;
